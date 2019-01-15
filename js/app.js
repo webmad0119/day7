@@ -1,11 +1,11 @@
 var app = {
     version: "1.0",
-    start: function (nDivs) {
+    start: function (nDivs, primaryColor, secondaryColor) {
         // for (var i = 0; i < 10; i++) {
         //     $("body").prepend("<div>")
         // }
 
-        if (nDivs === undefined) nDivs = 100; //defaulting!
+        if (nDivs === undefined) throw new Error("You must pass a mandatory number of divs")
         var halfNDivs = nDivs / 2
 
         $("body").prepend("<div><span></span></div>".repeat(nDivs))
@@ -23,8 +23,8 @@ var app = {
         //color property getter
         //var color = $("div").css("background")
 
-        $(`div:lt(${halfNDivs})`).css("background", "red")
-        $($(`div:gt(${(halfNDivs) - 1})`)).css("background", "pink")
+        $(`div:lt(${halfNDivs})`).css("background", primaryColor)
+        $($(`div:gt(${(halfNDivs) - 1})`)).css("background", secondaryColor)
 
         $("div").hover(function () {
             $(this)
