@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .butterfly {
+            height: 100px;
+            width: 130px;
+            background-size: cover;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        $("body").append("<div class='butterfly' />".repeat(100))
+        $(".butterfly:even").css("background-image", "url(img/butterfly0.png)")
+        $(".butterfly:odd").css("background-image", "url(img/butterfly1.png)")
+
+        var cRow = 0
+        var cColumn = 0
+
+        $(".butterfly").each(function (idx) {
+            $(this).css("left", cColumn * 130)
+            cColumn++
+
+            if (idx % 20 === 0) {
+                cRow++
+                cColumn = 0;
+            }
+
+            $(this)
+                .css("top", cRow * 150)
+                .css("transform", `rotate(${Math.random() * 360}deg)`)
+        })
+
+        // function dissapear() {
+        //     $(".butterfly:even").hide(1000, function () {
+        //         // alert("animacion completa")
+        //     })
+        // }
+        
+        // setTimeout(dissapear, 1000)
+
+        $("body").click(function () {
+            $(".butterfly:even").fadeToggle()
+        })
+    </script>
+</body>
+
+</html>

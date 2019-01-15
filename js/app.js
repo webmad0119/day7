@@ -1,6 +1,6 @@
 var app = {
     version: "1.0",
-    start: function (nDivs, primaryColor, secondaryColor) {
+    start: function (nDivs, primaryColor, secondaryColor, colorScheme) {
         // for (var i = 0; i < 10; i++) {
         //     $("body").prepend("<div>")
         // }
@@ -9,7 +9,6 @@ var app = {
         var halfNDivs = nDivs / 2
 
         $("body").prepend("<div><span></span></div>".repeat(nDivs))
-        var colorScheme = ["B61173", "E0335E", "EF6B30", "FF8100", "FF9800"]
         var nColors = colorScheme.length
 
         //this changes all the divs once (with the same value)
@@ -29,6 +28,14 @@ var app = {
         $("div").hover(function () {
             $(this)
                 .css("background", `#${colorScheme[Math.floor(Math.random() * nColors)]}`)
+        })
+
+        var nClickedTimes = 0
+
+        $("input[type=button]").on("click", function () {
+            $(this).toggleClass("disabled")
+
+            if (++nClickedTimes === 3) $(this).off("click")
         })
     }
 }
